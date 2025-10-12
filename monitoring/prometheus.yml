@@ -1,0 +1,65 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # API Gateway
+  - job_name: 'api-gateway'
+    static_configs:
+      - targets: ['api-gateway:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Calendar Service
+  - job_name: 'calendar-service'
+    static_configs:
+      - targets: ['calendar-service:3001']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Objectives Service
+  - job_name: 'objectives-service'
+    static_configs:
+      - targets: ['objectives-service:3002']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Technology Updates Service
+  - job_name: 'tech-updates-service'
+    static_configs:
+      - targets: ['tech-updates-service:3003']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Node Exporter (if available)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 30s
+
+  # MongoDB Exporter (if available)
+  - job_name: 'mongodb-exporter'
+    static_configs:
+      - targets: ['mongodb-exporter:9216']
+    scrape_interval: 30s
+
+  # Redis Exporter (if available)
+  - job_name: 'redis-exporter'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+    scrape_interval: 30s
+
+  # Kafka Exporter (if available)
+  - job_name: 'kafka-exporter'
+    static_configs:
+      - targets: ['kafka-exporter:9308']
+    scrape_interval: 30s

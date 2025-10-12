@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" version="20.6.3">
+  <diagram name="Domain-Driven Microservices Architecture">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="api_gateway" value="API Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="kafka" value="Apache Kafka Cluster" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="500" y="50" width="200" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="redis" value="Redis Cache Cluster" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="500" y="150" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="observability" value="Observability Stack&#10;(Prometheus + Grafana + Jaeger)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="500" y="250" width="220" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="calendar_service" value="Calendar Service (Node.js)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="50" y="150" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="objectives_service" value="Objectives &amp; Goals Service (Node.js)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="50" y="270" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="techupdates_service" value="Technology Updates Service (Node.js)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="50" y="390" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="mongo_calendar" value="Calendar Domain DB&#10;Collections:&#10;- events&#10;- reminders&#10;- recurring_patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf2e9;strokeColor=#d97b56;" vertex="1" parent="1">
+          <mxGeometry x="270" y="150" width="180" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="mongo_objectives" value="Objectives Domain DB&#10;Collections:&#10;- objectives&#10;- milestones&#10;- progress_logs&#10;- goal_categories" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf2e9;strokeColor=#d97b56;" vertex="1" parent="1">
+          <mxGeometry x="270" y="270" width="200" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="mongo_techupdates" value="TechUpdates Domain DB&#10;Collections:&#10;- articles&#10;- authors&#10;- categories&#10;- tags" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf2e9;strokeColor=#d97b56;" vertex="1" parent="1">
+          <mxGeometry x="270" y="390" width="200" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_api_calendar_service" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="api_gateway" target="calendar_service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_api_objectives_service" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="api_gateway" target="objectives_service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_api_techupdates_service" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="api_gateway" target="techupdates_service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_calendar_db" value="CRUD" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="calendar_service" target="mongo_calendar">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_objectives_db" value="CRUD" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="objectives_service" target="mongo_objectives">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_techupdates_db" value="CRUD" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="techupdates_service" target="mongo_techupdates">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_kafka_calendar_service" value="Publish / Consume Events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="calendar_service" target="kafka">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_kafka_objectives_service" value="Publish / Consume Events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="objectives_service" target="kafka">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_kafka_techupdates_service" value="Publish / Consume Events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="techupdates_service" target="kafka">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_redis_calendar_service" value="Cache Read/Write" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="calendar_service" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_redis_objectives_service" value="Cache Read/Write" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="objectives_service" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_redis_techupdates_service" value="Cache Read/Write" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="techupdates_service" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_obs_calendar_service" value="Metrics / Traces" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="calendar_service" target="observability">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_obs_objectives_service" value="Metrics / Traces" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="objectives_service" target="observability">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_obs_techupdates_service" value="Metrics / Traces" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="techupdates_service" target="observability">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,71 @@
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+  
+  <div class="dashboard-grid">
+    <!-- Calendar Overview -->
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>Calendar Overview</mat-card-title>
+        <mat-card-subtitle>Upcoming events and reminders</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Your calendar is up to date with 5 upcoming events this week.</p>
+        <button mat-raised-button color="primary" routerLink="/calendar">
+          View Calendar
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Objectives Progress -->
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>Objectives Progress</mat-card-title>
+        <mat-card-subtitle>Track your goals and milestones</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>You have 3 active objectives with 2 milestones completed this month.</p>
+        <button mat-raised-button color="primary" routerLink="/objectives">
+          View Objectives
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tech Updates -->
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>Latest Tech Updates</mat-card-title>
+        <mat-card-subtitle>Stay informed with technology trends</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>5 new articles published this week covering the latest in technology.</p>
+        <button mat-raised-button color="primary" routerLink="/tech-updates">
+          View Articles
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Quick Actions -->
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>Quick Actions</mat-card-title>
+        <mat-card-subtitle>Common tasks and shortcuts</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="quick-actions">
+          <button mat-raised-button color="accent" routerLink="/calendar">
+            <mat-icon>event</mat-icon>
+            Add Event
+          </button>
+          <button mat-raised-button color="accent" routerLink="/objectives">
+            <mat-icon>flag</mat-icon>
+            Set Goal
+          </button>
+          <button mat-raised-button color="accent" routerLink="/tech-updates">
+            <mat-icon>article</mat-icon>
+            Read Articles
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

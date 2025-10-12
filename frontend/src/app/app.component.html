@@ -1,0 +1,81 @@
+<div class="app-container">
+  <!-- Header -->
+  <mat-toolbar color="primary" class="app-header">
+    <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+    <span class="app-title">{{ title }}</span>
+    
+    <span class="spacer"></span>
+    
+    <!-- Theme Toggle -->
+    <button mat-icon-button (click)="themeService.toggleTheme()" matTooltip="Toggle Theme">
+      <mat-icon>{{ themeService.isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+    
+    <!-- User Menu -->
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" *ngIf="isAuthenticated">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    
+    <mat-menu #userMenu="matMenu">
+      <div class="user-info" mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>{{ currentUser?.email || 'User' }}</span>
+      </div>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <!-- Side Navigation -->
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened class="sidenav">
+      <mat-nav-list>
+        <!-- Dashboard -->
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+        
+        <!-- Calendar -->
+        <a mat-list-item routerLink="/calendar" routerLinkActive="active">
+          <mat-icon matListItemIcon>event</mat-icon>
+          <span matListItemTitle>Calendar</span>
+        </a>
+        
+        <!-- Objectives -->
+        <a mat-list-item routerLink="/objectives" routerLinkActive="active">
+          <mat-icon matListItemIcon>flag</mat-icon>
+          <span matListItemTitle>Objectives</span>
+        </a>
+        
+        <!-- Technology Updates -->
+        <a mat-list-item routerLink="/tech-updates" routerLinkActive="active">
+          <mat-icon matListItemIcon>article</mat-icon>
+          <span matListItemTitle>Tech Updates</span>
+        </a>
+        
+        <mat-divider></mat-divider>
+        
+        <!-- Settings -->
+        <a mat-list-item routerLink="/settings" routerLinkActive="active">
+          <mat-icon matListItemIcon>settings</mat-icon>
+          <span matListItemTitle>Settings</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content class="main-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- Loading Spinner -->
+<mat-spinner *ngIf="authService.isLoading$ | async" class="loading-spinner"></mat-spinner>

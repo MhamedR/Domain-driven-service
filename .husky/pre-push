@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run tests before push
+echo "Running tests before push..."
+
+# Test backend services
+cd services/calendar-service && npm test
+cd ../objectives-service && npm test
+cd ../tech-updates-service && npm test
+
+# Test frontend
+cd ../../frontend && npm test -- --watch=false
+
+echo "All tests passed! Proceeding with push..."
